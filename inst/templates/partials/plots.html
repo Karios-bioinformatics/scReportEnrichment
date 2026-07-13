@@ -1,0 +1,43 @@
+<div class="section-title">Enrichment Plots</div>
+
+<!-- Shared filters for both plots -->
+<div class="filter-bar">
+  <label>Comparison</label>
+  <select id="plot-comparison-filter">
+    <option value="all">All</option>
+  </select>
+  <label>Database</label>
+  <select id="plot-database-filter">
+    <option value="all">All</option>
+  </select>
+  <label>Ontology</label>
+  <select id="plot-ontology-filter">
+    <option value="all">All</option>
+  </select>
+  <label>Direction</label>
+  <select id="plot-direction-filter">
+    <option value="all">All</option>
+  </select>
+</div>
+
+<!-- Dot Plot -->
+<div class="plot-container">
+  <div class="plot-header">Enrichment Dot Plot</div>
+  <div id="dot-plot"></div>
+</div>
+
+<!-- Bar Plot -->
+<div class="plot-container">
+  <div class="plot-header">Enrichment Bar Plot</div>
+  <div class="filter-bar">
+    <label>Rank by</label>
+    <select id="bar-sort-by">
+      <option value="p_adjust">p.adjust</option>
+      <option value="gene_count">Gene Count</option>
+      <option value="gene_ratio">Gene Ratio</option>
+    </select>
+    <label>Top N</label>
+    <input type="number" id="bar-top-n" min="1" max="200" style="width:70px;">
+  </div>
+  <div id="bar-plot"></div>
+</div>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{title}}</title>
+  {{css_tag}}
+  {{plotly_tag}}
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="report-header">
+      <div class="report-title">{{title}}</div>
+      <div class="report-meta">Generated: {{generation_time}} | scReportEnrichment v{{package_version}}</div>
+    </header>
+
+    <div class="report-body">
+      <!-- Sidebar -->
+      {{sidebar}}
+
+      <!-- Content -->
+      <main class="content">
+        <!-- Overview -->
+        <section id="sec-overview" class="section active">
+          {{overview}}
+        </section>
+
+        <!-- Enrichment Plots -->
+        <section id="sec-plots" class="section">
+          {{plots}}
+        </section>
+
+        <!-- Term Table -->
+        <section id="sec-term-table" class="section">
+          {{term_table}}
+        </section>
+
+        <!-- Term Detail -->
+        <section id="sec-term-detail" class="section">
+          {{term_detail}}
+        </section>
+
+        <!-- Method Info -->
+        <section id="sec-method" class="section">
+          {{method_info}}
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Report Payload (JSON data for JS) -->
+  <script id="sr-payload" type="application/json">{{report_payload}}</script>
+
+  <!-- JavaScript -->
+  <script>{{js_report}}</script>
+  <script>{{js_plot_utils}}</script>
+  <script>{{js_enrichment_plots}}</script>
+  <script>{{js_term_table}}</script>
+  <script>{{js_term_detail}}</script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+Package: scReportEnrichment
+Type: Package
+Title: Single-Cell Functional Enrichment Interactive HTML Report
+Version: 0.1.0
+Authors@R: person(given = "Kee-gong Karios",
+                  family = "Park",
+                  email = "karioslion0517@gmail.com",
+                  role = c("aut", "cre"))
+Description: Generate self-contained interactive HTML reports from pre-computed
+    ORA (Over-Representation Analysis) functional enrichment results. Accepts
+    generic data.frames or clusterProfiler enrichResult objects and produces a
+    styled report with overview cards, dot plots, bar plots, searchable term
+    tables, and term detail panels. Part of the scReport ecosystem alongside
+    scReportLite, scReportComposition, and scReportDE.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Imports:
+    jsonlite,
+    plotly
+Suggests:
+    clusterProfiler,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+RoxygenNote: 7.3.0

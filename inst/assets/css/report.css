@@ -1,0 +1,378 @@
+/* === scReportEnrichment: Report Styles v0.1.0 === */
+/* scReport ecosystem visual conventions: green accent, card-based, left sidebar */
+
+:root {
+  --sr-accent: #00b894;
+  --sr-accent-dark: #00997a;
+  --sr-accent-soft: rgba(0, 184, 148, 0.12);
+  --sr-accent-border: rgba(0, 184, 148, 0.35);
+  --sr-border: #dfe6e9;
+  --sr-text: #2d3436;
+  --sr-muted: #95a5a6;
+  --sr-bg: #f5f6fa;
+  --sr-card-bg: #ffffff;
+  --sr-radius-sm: 6px;
+  --sr-radius-md: 8px;
+  --sr-shadow: 0 1px 3px rgba(0,0,0,0.08);
+  --sr-sidebar-width: 220px;
+  --sr-header-height: 54px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+               "Helvetica Neue", Arial, sans-serif;
+  background: var(--sr-bg);
+  color: var(--sr-text);
+  line-height: 1.6;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---- Layout ---- */
+.app-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Header ---- */
+.report-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-bottom: 1px solid var(--sr-border);
+  padding: 0 24px;
+  height: var(--sr-header-height);
+  flex-shrink: 0;
+}
+.report-title {
+  font-size: 1.15em;
+  font-weight: 600;
+  color: var(--sr-text);
+}
+.report-meta {
+  font-size: 0.78em;
+  color: var(--sr-muted);
+}
+
+/* ---- Body: sidebar + content ---- */
+.report-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  overflow: hidden;
+}
+
+/* ---- Sidebar ---- */
+.sidebar {
+  width: var(--sr-sidebar-width);
+  flex-shrink: 0;
+  background: #fff;
+  border-right: 1px solid var(--sr-border);
+  padding: 12px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar-section {
+  padding: 4px 16px;
+  font-size: 0.72em;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--sr-muted);
+  margin-top: 8px;
+}
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  font-size: 0.88em;
+  color: var(--sr-text);
+  cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: background 0.15s, border-color 0.15s;
+  text-decoration: none;
+}
+.sidebar-item:hover {
+  background: var(--sr-accent-soft);
+}
+.sidebar-item.active {
+  border-left-color: var(--sr-accent);
+  background: var(--sr-accent-soft);
+  font-weight: 500;
+  color: var(--sr-accent-dark);
+}
+
+/* ---- Content ---- */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 24px;
+}
+.section {
+  display: none;
+}
+.section.active {
+  display: block;
+}
+.section-title {
+  font-size: 1.3em;
+  font-weight: 600;
+  color: var(--sr-text);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--sr-border);
+}
+
+/* ---- Cards (Overview) ---- */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+.card {
+  background: var(--sr-card-bg);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-md);
+  padding: 16px;
+  box-shadow: var(--sr-shadow);
+}
+.card-label {
+  font-size: 0.75em;
+  color: var(--sr-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 4px;
+}
+.card-value {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: var(--sr-accent-dark);
+}
+.card-sub {
+  font-size: 0.78em;
+  color: var(--sr-muted);
+  margin-top: 4px;
+}
+
+/* ---- Filter bar ---- */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.filter-bar label {
+  font-size: 0.82em;
+  color: var(--sr-muted);
+  font-weight: 500;
+}
+.filter-bar select,
+.filter-bar input {
+  padding: 5px 10px;
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-sm);
+  font-size: 0.85em;
+  font-family: inherit;
+  background: #fff;
+  color: var(--sr-text);
+}
+.filter-bar select:focus,
+.filter-bar input:focus {
+  outline: none;
+  border-color: var(--sr-accent);
+  box-shadow: 0 0 0 2px var(--sr-accent-soft);
+}
+
+/* ---- Plot containers ---- */
+.plot-container {
+  background: var(--sr-card-bg);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+  min-height: 400px;
+}
+.plot-container .plot-header {
+  font-size: 0.92em;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: var(--sr-text);
+}
+
+/* ---- Table container ---- */
+.table-container {
+  background: var(--sr-card-bg);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-md);
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+/* ---- Empty state ---- */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--sr-muted);
+}
+.empty-state-icon {
+  font-size: 2.5em;
+  margin-bottom: 12px;
+}
+.empty-state-text {
+  font-size: 1em;
+  line-height: 1.6;
+}
+
+/* ---- Term detail ---- */
+.detail-card {
+  background: var(--sr-card-bg);
+  border: 1px solid var(--sr-border);
+  border-radius: var(--sr-radius-md);
+  padding: 20px;
+  margin-bottom: 16px;
+}
+.detail-header {
+  font-size: 1.1em;
+  font-weight: 600;
+  color: var(--sr-accent-dark);
+  margin-bottom: 12px;
+}
+.detail-grid {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 8px;
+  font-size: 0.88em;
+}
+.detail-label {
+  color: var(--sr-muted);
+  font-weight: 500;
+}
+.detail-value {
+  color: var(--sr-text);
+}
+.gene-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+.gene-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  background: var(--sr-accent-soft);
+  border: 1px solid var(--sr-accent-border);
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-family: monospace;
+  color: var(--sr-accent-dark);
+}
+
+/* ---- Method info ---- */
+.method-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.method-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--sr-border);
+  font-size: 0.88em;
+}
+.method-table td:first-child {
+  font-weight: 500;
+  color: var(--sr-muted);
+  width: 220px;
+}
+
+/* ---- Warnings ---- */
+.warnings-box {
+  background: #fff8e1;
+  border: 1px solid #ffe082;
+  border-radius: var(--sr-radius-md);
+  padding: 14px 18px;
+  margin-bottom: 16px;
+}
+.warnings-box-title {
+  font-size: 0.85em;
+  font-weight: 600;
+  color: #f57f17;
+  margin-bottom: 8px;
+}
+.warning-item {
+  font-size: 0.82em;
+  color: #795548;
+  padding: 2px 0;
+}
+
+/* ---- Table ---- */
+.sr-enrichment-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84em;
+}
+.sr-enrichment-table thead tr {
+  border-bottom: 2px solid var(--sr-border);
+}
+.sr-enrichment-table th {
+  text-align: left;
+  padding: 8px 6px;
+  font-weight: 600;
+  color: var(--sr-muted);
+  white-space: nowrap;
+}
+.sr-enrichment-table td {
+  padding: 6px;
+  border-bottom: 1px solid var(--sr-border);
+}
+.sr-enrichment-table tr[data-result-id] {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.sr-enrichment-table tr[data-result-id]:hover {
+  background: var(--sr-accent-soft);
+}
+.sr-row-non-significant {
+  opacity: 0.6;
+}
+.sr-col-id, .sr-col-tid { font-family: monospace; font-size: 0.8em; }
+.sr-col-pval, .sr-col-padj, .sr-col-gratio { font-family: monospace; font-size: 0.8em; }
+.sr-col-name { max-width: 260px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sr-col-genes { font-family: monospace; font-size: 0.75em; max-width: 180px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sr-col-count { text-align: center; }
+
+/* ---- Narrow screen ---- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+    padding: 8px 0;
+  }
+  .sidebar-item {
+    padding: 10px;
+    justify-content: center;
+    font-size: 0;
+  }
+  .sidebar-item::before {
+    content: "·";
+    font-size: 1.4em;
+  }
+  .sidebar-section {
+    display: none;
+  }
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .detail-grid {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+  .detail-grid .detail-label {
+    margin-top: 8px;
+  }
+}

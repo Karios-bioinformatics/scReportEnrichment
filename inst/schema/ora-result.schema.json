@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://karios-bioinformatics.github.io/scReportEnrichment/schema/ora-result.schema.json",
+  "title": "scReportEnrichment Internal ORA Result Schema",
+  "description": "Canonical internal representation of an over-representation analysis enrichment result row, as consumed by scReportEnrichment v0.1.0.",
+  "type": "object",
+  "required": [
+    "result_id",
+    "comparison",
+    "database",
+    "term_id",
+    "term_name",
+    "p_value",
+    "p_adjust",
+    "gene_count",
+    "genes"
+  ],
+  "properties": {
+    "result_id": {
+      "type": "string",
+      "description": "Unique identifier for this result row (e.g. ORA_0001)."
+    },
+    "comparison": {
+      "type": "string",
+      "description": "Comparison, contrast, cell type, or group label for this result (e.g. B_cell_up, Cluster3)."
+    },
+    "database": {
+      "type": "string",
+      "description": "Enrichment database or gene-set source (e.g. GO, KEGG, Reactome, Hallmark, custom)."
+    },
+    "ontology": {
+      "type": ["string", "null"],
+      "description": "Sub-ontology or subcategory (e.g. BP, CC, MF for GO; KEGG for KEGG). May be null."
+    },
+    "term_id": {
+      "type": "string",
+      "description": "Database-specific term identifier (e.g. GO:0006915, KEGG:hsa04110)."
+    },
+    "term_name": {
+      "type": "string",
+      "description": "Human-readable term or pathway name."
+    },
+    "p_value": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Raw (unadjusted) enrichment p-value."
+    },
+    "p_adjust": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Multiple-testing corrected p-value (e.g. BH / Bonferroni)."
+    },
+    "q_value": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Storey q-value or FDR. May be identical to p_adjust or null."
+    },
+    "gene_ratio": {
+      "type": ["string", "null"],
+      "pattern": "^(\\d+(\\.\\d+)?/\\d+(\\.\\d+)?)?$",
+      "description": "Gene ratio string in A/B format (e.g. 5/100), or a numeric ratio, or null."
+    },
+    "gene_ratio_num": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Numeric gene ratio (parsed from gene_ratio)."
+    },
+    "background_ratio": {
+      "type": ["string", "null"],
+      "description": "Background ratio string in A/B format, or null."
+    },
+    "background_ratio_num": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "maximum": 1,
+      "description": "Numeric background ratio (parsed from background_ratio)."
+    },
+    "gene_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Number of input genes overlapping with this term's gene set."
+    },
+    "input_direction": {
+      "type": "string",
+      "enum": ["up", "down", "mixed", "unspecified"],
+      "description": "Direction of gene expression change in the input. Not a claim about pathway activation/inhibition."
+    },
+    "genes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "List of individual gene identifiers/symbols for this term."
+    },
+    "gene_ids_raw": {
+      "type": ["string", "null"],
+      "description": "Raw gene identifier string as provided in the input (e.g. semicolon-delimited)."
+    }
+  },
+  "additionalProperties": false
+}
