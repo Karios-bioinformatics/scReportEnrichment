@@ -12,6 +12,10 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
+## scReport Ecosystem
+
+[scReport](https://github.com/Karios-bioinformatics/scReport) · [scReportLite 1.0.0](https://github.com/Karios-bioinformatics/scReportLite/releases/tag/v1.0.0) · [scReportComposition](https://github.com/Karios-bioinformatics/scReportComposition) · [scReportDE](https://github.com/Karios-bioinformatics/scReportDE)
+
 ## Overview
 
 **scReportEnrichment** is an interactive HTML reporting package within the scReport ecosystem dedicated to functional enrichment analysis.
